@@ -32,6 +32,7 @@ async def my_task():
         progress_str = ''.join(progress)
         if current_p > persentage:
             if collection.count_documents({}):
+                persentage = current_p
                 for post in collection.find():
                     channel = bot.get_channel(post['channel_id'])
                     await channel.send(f"{progress_str} {current_p}%")
