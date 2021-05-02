@@ -9,7 +9,7 @@ This bot is inspired from yearprogress channel in telegram and is only for educa
 
 TODO:
 * Add description to !setup
-* Add customizable progress bar
+* ~~Add customizable progress bar~~
 * ~~Save percentage value to a file or online to prevent spam on bot reboot~~
 * ~~Add separate timer for each guild~~
 
