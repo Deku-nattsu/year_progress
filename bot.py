@@ -11,7 +11,6 @@ cluster = MongoClient(os.environ['CONNECT'])
 db = cluster['year_progress']
 config = db['config']
 progress = db['progress']
-percentage = progress.find_one({"_id": 0})['percentage']
 
 
 @bot.event
@@ -29,6 +28,7 @@ async def my_task():
         global current_p
         current_p = int(day_of_year / total_days * 100)
         days_left = total_days - day_of_year
+        percentage = progress.find_one({"_id": 0})['progress']
         if current_p > percentage:
             if config.count_documents({}):
                 progress.update_one({"_id": 0}, {"$set": {"progress": current_p}})
@@ -109,6 +109,7 @@ async def apply(ctx, empty, full, *, kwargs=None):
 
 
 def draw_custom_bar(empty, full, *, st_em=None, st_fl=None, end_em=None, end_fl=None, left=None, right=None, length=20, critic=5):
+    percentage = progress.find_one({"_id": 0})['progress']
     if st_em is None:
         st_em = empty
     if st_fl is None:
