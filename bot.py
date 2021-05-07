@@ -34,8 +34,12 @@ async def my_task():
                 progress.update_one({"_id": 0}, {"$set": {"progress": current_p}})
                 for post in config.find():
                     if post['time'] == hour:
-                        progress_str = draw_custom_bar(
-                            *post['bar_args'], **post['bar_kwargs'])
+                        if post.get('bar_kwargs'):
+                            progress_str = draw_custom_bar(
+                                *post['bar_args'], **post['bar_kwargs'])
+                        else:
+                            progress_str = draw_custom_bar(
+                                *post['bar_args'])
                         channel = bot.get_channel(post['channel_id'])
                         await channel.send(f"{progress_str} {current_p}%")
             W, H = (512, 512)
