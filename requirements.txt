@@ -1,5 +1,5 @@
 git+https://github.com/Rapptz/discord.py@008432c76aa42713d6e8f8ed31c775c18dc8d748
-Pillow~=8.1.1
+Pillow>=8.2.0
 pymongo~=3.11.3
 boto~=2.49.0
 dnspython
