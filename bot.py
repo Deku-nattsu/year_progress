@@ -24,10 +24,10 @@ async def my_task():
         date = datetime.now()
         hour = get_hour()
         day_of_year = int(date.strftime('%j'))
-        total_days = 366 if calendar.isleap(date.year) else 356
+        total_days = 366 if calendar.isleap(date.year) else 365
         global current_p
         current_p = int(day_of_year / total_days * 100)
-        days_left = total_days - day_of_year
+        days_left = str(total_days - day_of_year)
         percentage = progress.find_one({"_id": 0})['progress']
         if current_p > percentage:
             if config.count_documents({}):
@@ -46,9 +46,9 @@ async def my_task():
             img = Image.new("RGB", (W, H), (0, 0, 0))
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype("digital-7.ttf", 300)
-            w, h = draw.textsize(str(days_left), font)
+            w = draw.textsize(days_left, font)
             draw.text(((W - w) / 2, 150),
-                      str(days_left), (255, 255, 255), font=font)
+                      days_left, (255, 255, 255), font=font)
             img.save("pfp.jpg")
             with open("pfp.jpg", 'rb') as pfp:
                 await bot.user.edit(avatar=pfp.read())
