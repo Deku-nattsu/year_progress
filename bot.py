@@ -54,7 +54,7 @@ async def my_task():
                 await bot.user.edit(avatar=pfp.read())
         await asyncio.sleep(3600)
 
-
+@commands.has_permissions(administrator=True)
 @bot.command()
 async def setup(ctx):
     guild_id = ctx.guild.id
