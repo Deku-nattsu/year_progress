@@ -46,7 +46,7 @@ async def my_task():
             img = Image.new("RGB", (W, H), (0, 0, 0))
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype("digital-7.ttf", 300)
-            w = draw.textsize(days_left, font)
+            w, h = draw.textsize(days_left, font)
             draw.text(((W - w) / 2, 150),
                       days_left, (255, 255, 255), font=font)
             img.save("pfp.jpg")
